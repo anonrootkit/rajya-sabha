@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
+    id("kotlin-kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -71,4 +73,18 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.compose)
+    kapt(libs.hilt.compiler)
+
+    // Coil
+    implementation(libs.coil)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
